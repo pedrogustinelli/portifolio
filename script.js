@@ -52,7 +52,31 @@
   });
 
   /* ===================================================
-     4. SCROLL REVEAL (Intersection Observer)
+     4. THEME TOGGLE (Dark/Light Mode)
+     =================================================== */
+  const themeToggle = document.getElementById('themeToggle');
+  
+  // Check local storage for theme preference
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  }
+
+  /* ===================================================
+     5. SCROLL REVEAL (Intersection Observer)
      =================================================== */
   const revealElements = document.querySelectorAll('.reveal');
 
